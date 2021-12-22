@@ -1,0 +1,40 @@
+// Insertion Sort Approach
+
+package com.data_structure.sort;
+
+public class InsertionSort {
+
+	public static int[] insertionSort(int[] arr) {
+
+		int temp;
+
+		for (int i = 1; i < arr.length; i++) {
+
+			temp = arr[i];
+			int j = i - 1;
+
+			while (j >= 0 && arr[j] > temp) {
+
+				arr[j + 1] = arr[j];
+				j = j - 1;
+
+			}
+			arr[j + 1] = temp;
+		}
+
+		return arr;
+	}
+
+//driver code
+	public static void main(String[] arg) {
+
+		int arr[] = { 8, 15, 16, 5, 4, 3, 9 };// Test data
+
+		int ans[] = insertionSort(arr);
+
+		for (int i : ans)
+			System.out.print(i + " ");
+
+	}
+
+}
