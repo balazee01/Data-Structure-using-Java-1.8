@@ -1,0 +1,77 @@
+package com.data_structure.sort;
+
+public class MergeSort {
+
+	private static int[] arr = { 5, 3, 6, 7, 8, 9, 3, 4, 63, 42, 11 }; //Test Data
+
+	public static void mergeSort(int[] arr, int startIndex, int lastIndex) {
+
+		if (startIndex < lastIndex) {
+
+			int m = startIndex + (lastIndex - startIndex) / 2;
+			mergeSort(arr, startIndex, m);
+			mergeSort(arr, m + 1, lastIndex);
+			merge(arr, startIndex, m, lastIndex);
+		}
+	}
+
+	public static void merge(int[] arr, int startIndex, int middle, int lastIndex) {
+
+		int n1 = middle - startIndex + 1;
+		int n2 = lastIndex - middle;
+
+		int L1[] = new int[n1];
+		int R1[] = new int[n2];
+
+		for (int i = 0; i < n1; i++) {
+
+			L1[i] = arr[startIndex + i];
+		}
+
+		for (int j = 0; j < n2; j++) {
+
+			R1[j] = arr[middle + 1 + j];
+		}
+
+		int i = 0, j = 0;
+		int k = startIndex;
+
+		while (i < n1 && j < n2) {
+
+			if (L1[i] <= R1[j]) {
+
+				arr[k] = L1[i];
+				i++;
+			} else {
+				arr[k] = R1[j];
+				j++;
+			}
+
+			k++;
+		}
+
+		while (i < n1) {
+			arr[k] = L1[i];
+			i++;
+			k++;
+		}
+		while (j < n2) {
+			arr[k] = R1[j];
+			j++;
+			k++;
+		}
+
+	}
+
+	public static void main(String[] args) {
+
+		mergeSort(arr, 0, arr.length - 1);
+
+		for (int i : arr) {
+
+			System.out.print(i + " ");
+		}
+
+	}
+
+}
