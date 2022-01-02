@@ -1,12 +1,19 @@
-//driver code perform push,pop,pesk,traverse operation
+//stack implementation using fixed array
 
 package com.data_structure.linear_test;
 
 public class StackArray2_0 {
 
-	static final int MAX = 5;
-	int arr[] = new int[MAX];
-	int top = -1;
+	private int size, capacity, top = -1;
+	private int[] arr;
+
+	public StackArray2_0(int capacity) {
+
+		this.capacity = capacity;
+		arr = new int[capacity];
+		size = 0;
+
+	}
 
 	void push(int data) {
 
@@ -15,6 +22,7 @@ public class StackArray2_0 {
 		} else {
 
 			arr[++top] = data;
+			size++;
 			System.out.println(data + " pushed into stack");
 
 		}
@@ -30,6 +38,7 @@ public class StackArray2_0 {
 		} else {
 
 			int a = arr[top--];
+			size--;
 			return a;
 		}
 	}
@@ -61,13 +70,13 @@ public class StackArray2_0 {
 
 	private boolean isFull() {
 
-		return top >= (MAX - 1);
+		return size == capacity;
 	}
 
 	// driver code
 	public static void main(String[] args) {
 
-		StackArray2_0 stack = new StackArray2_0();
+		StackArray2_0 stack = new StackArray2_0(5);
 
 		// System.out.println(stack.pop() +" Popped from stack");
 
