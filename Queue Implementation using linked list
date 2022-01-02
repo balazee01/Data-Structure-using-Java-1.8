@@ -1,0 +1,107 @@
+//Queue implementation using linked list
+
+package com.data_structure.linear_test;
+
+public class QueueLinkedListImpl {
+
+	private Node front, rear;
+	private int size;
+
+	private static class Node {
+
+		Node node;
+		int data;
+
+		Node(int data) {
+
+			this.data = data;
+		}
+	}
+
+	public void enqueue(int data) {
+
+		Node newNode = new Node(data);
+
+		Node temp = rear;
+
+		rear = newNode;
+		if (temp == null) {
+			front = newNode;
+			size++;
+		} else {
+
+			temp.node = newNode;
+			size++;
+		}
+
+	}
+
+	public void dequeue() {
+
+		if (isEmpty()) {
+
+			System.out.println("Queue is underflow");
+
+		} else {
+
+			Node temp = front;
+			front = front.node;
+
+			System.out.println(temp.data + " dequeued ");
+			if (front == null) {
+				rear = null;
+			}
+
+		}
+
+	}
+
+	public void traverse() {
+		if (isEmpty()) {
+
+			System.out.println("Queue is empty");
+
+		} else {
+			Node temp = front;
+			System.out.print("Queue: ");
+			while (temp != null) {
+
+				System.out.print(" " + temp.data);
+				temp = temp.node;
+			}
+
+			System.out.println();
+		}
+	}
+
+	private boolean isEmpty() {
+
+		return front == null;
+	}
+
+	public static void main(String[] args) {
+
+		QueueLinkedListImpl queue = new QueueLinkedListImpl();
+
+		queue.traverse();
+		queue.enqueue(10);
+		queue.enqueue(106);
+		queue.enqueue(104);
+		queue.enqueue(107);
+		queue.enqueue(100);
+		queue.traverse();
+
+		queue.dequeue();
+
+		queue.traverse();
+		queue.dequeue();
+		queue.traverse();
+		queue.dequeue();
+		queue.dequeue();
+		queue.dequeue();
+		queue.traverse();
+		queue.dequeue();
+
+	}
+
+}
