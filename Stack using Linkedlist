@@ -1,0 +1,106 @@
+//Stack implementation using linked list
+
+package com.data_structure.linear_test;
+
+public class StackLinkedListImpl {
+
+	private Node top;
+	private int size;
+
+	private static class Node {
+
+		Node next;
+		int data;
+
+		Node(int data) {
+
+			this.data = data;
+			this.next = null;
+		}
+	}
+
+	public void push(int data) {
+
+		Node temp = new Node(data);
+
+		temp.next = top;
+		top = temp;
+		size++;
+		System.out.println(data + " pushed in stack");
+	}
+
+	public void pop() {
+
+		if (isEmpty()) {
+
+			System.out.println("stack underflow");
+		} else {
+
+			Node temp = top;
+			top = top.next;
+			size--;
+			System.out.println(temp.data + " poped");
+			temp = null;
+		}
+	}
+
+	public void peak() {
+		if (isEmpty()) {
+
+			System.out.println("stack underflow");
+		} else {
+
+			System.out.println("Top item is " + top.data);
+		}
+
+	}
+
+	public void traverse() {
+
+		if (isEmpty()) {
+
+			System.out.println("stack is empty");
+		} else {
+			Node temp = top;
+			System.out.print("Stack");
+			while (temp != null) {
+
+				System.out.print(" " + temp.data);
+				temp = temp.next;
+			}
+			System.out.println();
+		}
+
+	}
+
+	private boolean isEmpty() {
+
+		return size == 0;
+	}
+
+	public static void main(String[] args) {
+
+		StackLinkedListImpl linkedlist = new StackLinkedListImpl();
+
+		linkedlist.traverse();
+
+		linkedlist.push(10);
+		linkedlist.push(12);
+		linkedlist.push(14);
+		linkedlist.push(25);
+		linkedlist.push(14);
+
+		linkedlist.traverse();
+
+		linkedlist.pop();
+		linkedlist.peak();
+
+		linkedlist.traverse();
+		linkedlist.pop();
+		linkedlist.traverse();
+
+		linkedlist.peak();
+
+	}
+
+}
