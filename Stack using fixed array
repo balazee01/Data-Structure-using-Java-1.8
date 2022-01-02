@@ -1,0 +1,138 @@
+//Stack implementation Brute Force Approach
+
+package com.data_structure.linear_test;
+
+import java.util.Scanner;
+
+public class StackTest {
+
+	static int arr[], size, top = -1;
+
+	static Scanner scn = new Scanner(System.in);
+
+	static {
+
+		create();
+	}
+
+	//driver code
+	public static void main(String[] args) {
+
+		int ch, item;
+		while (true) {
+
+			System.out.println("1.Push");
+			System.out.println("2.Pop");
+			System.out.println("3.Peak");
+			System.out.println("4.Traverse");
+			System.out.println("5.Quit");
+
+			System.out.println("Enter your choice: ");
+			ch = scn.nextInt();
+
+			switch (ch) {
+
+			case 1:
+				System.out.println("Enter element to be pushed:");
+				item = scn.nextInt();
+				push(item);
+				break;
+			case 2:
+				pop();
+				break;
+			case 3:
+				peak();
+				break;
+			case 4:
+				traverse();
+				break;
+			case 5:
+				System.exit(0);
+				break;
+
+			default:
+				System.out.println("Enter correct choice:");
+
+			}
+
+		}
+
+	}
+
+	private static void traverse() {
+
+		if (isEmpty()) {
+
+			System.out.println("Stack is underflow:");
+		} else {
+
+			for (int i = 0; i <= top; i++) {
+
+				System.out.print(arr[i] + " ");
+			}
+			System.out.println();
+
+		}
+
+	}
+
+	private static void peak() {
+
+		if (isEmpty()) {
+
+			System.out.println("Stack is underflow:");
+		} else {
+
+			System.out.println("Peak element of stack is: " + arr[top]);
+		}
+
+	}
+
+	private static void pop() {
+
+		if (isEmpty()) {
+
+			System.out.println("Stack is underflow:");
+		} else {
+
+			System.out.println("Item has beeb poped:" + arr[top]);
+			top--;
+
+		}
+	}
+
+	private static boolean isEmpty() {
+		if (top == -1) {
+			return true;
+		}
+		return false;
+	}
+
+	private static void push(int item) {
+
+		if (isFull()) {
+
+			System.out.println("statck is overflow:");
+		} else {
+			arr[++top] = item;
+			System.out.println("Item added successfully in stack:");
+		}
+
+	}
+
+	private static boolean isFull() {
+		if (top == size - 1) {
+			return true;
+		}
+		return false;
+	}
+
+	private static void create() {
+
+		System.out.println("Enter size of stack:");
+		size = scn.nextInt();
+		arr = new int[size];
+		System.out.println("Stack is created with the size:" + size);
+	}
+
+}
