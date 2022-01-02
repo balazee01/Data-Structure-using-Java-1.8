@@ -1,0 +1,114 @@
+//Queue Implementation using fixed array
+//Brute Force Approach 
+
+package com.data_structure.linear_test;
+
+import java.util.Scanner;
+
+public class QueueArray {
+
+	static int arr[], element, front = 0, rear = -1, size;
+	static Scanner scn = new Scanner(System.in);
+
+	static {
+		create();
+	}
+
+	public static void main(String[] arg) {
+
+		int ch;
+		int num;
+		while (true) {
+
+			System.out.println("1.Insert");
+			System.out.println("2.Delete");
+			System.out.println("3.Display");
+			System.out.println("4.Quit");
+			ch = scn.nextInt();
+
+			switch (ch) {
+
+			case 1:
+				System.out.println("Enter element to be inserted: ");
+				num = scn.nextInt();
+				insert(num);
+				break;
+			case 2:
+				delete();
+				break;
+
+			case 3:
+				display();
+				break;
+			case 4:
+				System.exit(0);
+				break;
+			default:
+				System.out.println("Enter correct choice: ");
+
+			}
+
+		}
+
+	}
+
+	private static void delete() {
+
+		if (isEmpty()) {
+			System.out.println("unsuccessful operation(Queue is underflow!)");
+		} else {
+
+			for (int i = 0; i < rear; i++) {
+
+				arr[i] = arr[i + 1];
+			}
+			rear--;
+		}
+
+	}
+
+	private static boolean isEmpty() {
+		if (rear == -1)
+			return true;
+		return false;
+	}
+
+	private static void display() {
+
+		System.out.println("Queue: ");
+
+		for (int i = 0; i <= rear; i++) {
+
+			System.out.print(arr[i] + " ");
+		}
+		System.out.println();
+	}
+
+	private static void insert(int num) {
+
+		if (isFull()) {
+			System.out.println("unsuccessful operation (Queue is overflow)");
+		} else {
+
+			rear++;
+			arr[rear] = num;
+			System.out.println("successful! element is added in Queue");
+		}
+
+	}
+
+	private static boolean isFull() {
+		if (rear == size - 1)
+			return true;
+		return false;
+	}
+
+	private static void create() {
+
+		System.out.println("Enter size of array");
+		size = scn.nextInt();
+		arr = new int[size];
+		System.out.println("Queue has been created with the size: " + size);
+	}
+
+}
