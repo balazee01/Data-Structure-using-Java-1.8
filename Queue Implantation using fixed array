@@ -1,0 +1,108 @@
+//Queue implementaion using fixed array
+
+package com.data_structure.linear_test;
+
+public class QueueArray2_0 {
+
+	private int front, rear, size, capacity;
+	private int arr[];
+
+	public QueueArray2_0(int capacity) {
+
+		this.capacity = capacity;
+		// rear=capacity-1;
+		rear = -1;
+		front = size = 0;
+		arr = new int[capacity];
+	}
+
+	public void enqueue(int data) {
+
+		if (isFull()) {
+			System.out.println("Queue Overflow");
+		} else {
+			// rear=(rear+1)%capacity;
+			arr[++rear] = data;
+			size++;
+			System.out.println(data + " enqueued to queue");
+		}
+	}
+
+	public void dequeue() {
+
+		if (isEmpty()) {
+			System.out.println("Queue underflow");
+
+		} else {
+			int data = arr[front];
+			for (int i = 0; i < size - 1; i++) {
+				arr[i] = arr[i + 1];
+			}
+			rear--;
+			size--;
+			System.out.println(data + " dequeued from queue");
+		}
+	}
+
+	public void front() {
+
+		if (isEmpty())
+			System.out.println("Queue underflow");
+		else
+			System.out.println(arr[front] + " front element in queue");
+	}
+
+	public void rear() {
+		if (isEmpty())
+			System.out.println("Queue underflow");
+		else
+			System.out.println("Rear item is " + arr[rear]);
+	}
+
+	public void traverse() {
+		if (isEmpty())
+			System.out.println("Queue underflow");
+		else {
+			System.out.println("Queue: ");
+			for (int i = 0; i < size; i++) {
+				System.out.print(" " + arr[i]);
+			}
+			System.out.println();
+		}
+
+	}
+
+	private boolean isEmpty() {
+
+		return size == 0;
+	}
+
+	private boolean isFull() {
+
+		return size == (capacity);
+	}
+
+	public static void main(String[] args) {
+
+		QueueArray2_0 queue = new QueueArray2_0(5);
+		// queue.dequeue();
+		queue.enqueue(10);
+		queue.enqueue(12);
+		queue.enqueue(100);
+		queue.enqueue(16);
+		queue.enqueue(17);
+		// queue.enqueue(10);
+
+		queue.traverse();
+
+		queue.dequeue();
+		queue.traverse();
+
+		queue.dequeue();
+		queue.traverse();
+
+		queue.front();
+		queue.rear();
+	}
+
+}
